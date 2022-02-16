@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuentameBlazor.Context", "QuentameBlazor.Context\QuentameBlazor.Context.csproj", "{57ACF143-6EFC-43FB-8B7A-1DC3D33A17D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuentameBlazor.Models", "QuentameBlazor.Models\QuentameBlazor.Models.csproj", "{A1D54BF2-1955-4565-8091-6BC2A66B475C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "QuentameBlazor", "QuentameBlazor", "{5E7697BA-DE28-444F-9B9E-1B080AE5EF98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuentameBlazor.Client", "QuentameBlazor\Client\QuentameBlazor.Client.csproj", "{11F1764C-75BB-4427-8B37-0C0F9C734B2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuentameBlazor.Server", "QuentameBlazor\Server\QuentameBlazor.Server.csproj", "{BD8D111F-67A9-4232-89A3-CA0D3B252569}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{57ACF143-6EFC-43FB-8B7A-1DC3D33A17D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57ACF143-6EFC-43FB-8B7A-1DC3D33A17D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57ACF143-6EFC-43FB-8B7A-1DC3D33A17D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57ACF143-6EFC-43FB-8B7A-1DC3D33A17D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1D54BF2-1955-4565-8091-6BC2A66B475C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1D54BF2-1955-4565-8091-6BC2A66B475C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1D54BF2-1955-4565-8091-6BC2A66B475C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1D54BF2-1955-4565-8091-6BC2A66B475C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6BD9327-4A2E-4042-BAEF-E1A8289F05DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6BD9327-4A2E-4042-BAEF-E1A8289F05DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6BD9327-4A2E-4042-BAEF-E1A8289F05DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6BD9327-4A2E-4042-BAEF-E1A8289F05DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11F1764C-75BB-4427-8B37-0C0F9C734B2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11F1764C-75BB-4427-8B37-0C0F9C734B2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11F1764C-75BB-4427-8B37-0C0F9C734B2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11F1764C-75BB-4427-8B37-0C0F9C734B2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD8D111F-67A9-4232-89A3-CA0D3B252569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD8D111F-67A9-4232-89A3-CA0D3B252569}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD8D111F-67A9-4232-89A3-CA0D3B252569}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD8D111F-67A9-4232-89A3-CA0D3B252569}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{11F1764C-75BB-4427-8B37-0C0F9C734B2D} = {5E7697BA-DE28-444F-9B9E-1B080AE5EF98}
+		{BD8D111F-67A9-4232-89A3-CA0D3B252569} = {5E7697BA-DE28-444F-9B9E-1B080AE5EF98}
+	EndGlobalSection
+EndGlobal
