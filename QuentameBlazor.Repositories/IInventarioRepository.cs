@@ -14,7 +14,7 @@ namespace QuentameBlazor.Repositories
         Inventarios GetInventarioByCodigo(string codigo);
         IEnumerable<Inventarios> GetInventarioByNombre(string nombre);
         int GetLastIdProd();
-        IEnumerable<Inventarios> GetAllProducts();
+        Task<IEnumerable<Inventarios>> GetAllProducts();
         Inventarios GetInventarioByIdWithDetails(int id);
         Inventarios GetInventarioById(int id);
         IEnumerable<Inventarios> GetProductsByCondition(Expression<Func<Inventarios, bool>> expression);

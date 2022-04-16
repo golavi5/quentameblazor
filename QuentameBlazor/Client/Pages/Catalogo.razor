@@ -1,0 +1,17 @@
+@page "/catalogo"
+
+<p>@Message</p>
+
+@if (inventarios != null)
+{
+
+}
+else
+{
+    <p>Loading...</p>
+}
+
+@code {
+    public string Message {get; set;}
+    public IEnumerable<Inventarios> inventarios;
+}

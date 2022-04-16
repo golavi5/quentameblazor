@@ -8,7 +8,7 @@ namespace QuentameBlazor.Repositories
 {
     public interface IRepositoryBase<T>
     {
-        IEnumerable<T> FindAll();
+        IQueryable<T> FindAll();
 
         IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression);
         

@@ -74,12 +74,12 @@ namespace QuentameBlazor.Repositories
                 .FirstOrDefault();
         }
 
-        public IEnumerable<Inventarios> GetAllProducts()
+        public async Task<IEnumerable<Inventarios>> GetAllProducts()
         {
-            return FindAll()
+            return await FindAll()
                 .Where(i => i.EsActivo == 1)
                 .OrderBy(i => i.NomInventario)
-                .ToList();
+                .ToListAsync();
         }
 
         public IEnumerable<Inventarios> GetProductsByCondition(Expression<Func<Inventarios, bool>> expression)

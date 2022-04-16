@@ -17,7 +17,7 @@ namespace QuentameBlazor.Repositories
             this.AppDbContext = appdbcontext;
         }
 
-        public IEnumerable<T> FindAll()
+        public IQueryable<T> FindAll()
         {
             return AppDbContext.Set<T>().AsNoTracking();
         }

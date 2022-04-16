@@ -10,6 +10,7 @@ using QuentameBlazor.Context;
 using Microsoft.EntityFrameworkCore;
 using QuentameBlazor.Repositories;
 using System.Text.Json.Serialization;
+using AutoMapper;
 
 namespace QuentameBlazor.Server
 {
@@ -27,8 +28,14 @@ namespace QuentameBlazor.Server
         public void ConfigureServices(IServiceCollection services)
         {
             string dbConnectionString = this.Configuration.GetConnectionString("DefaultConnection");
+        
+
             services.AddDbContext<AppDbContext>(options =>
                 options.UseMySQL(dbConnectionString));
+
+            //AutoMapper
+            services.AddAutoMapper(typeof(Startup));
+
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
             services.AddControllersWithViews().AddJsonOptions(x =>
                     x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
