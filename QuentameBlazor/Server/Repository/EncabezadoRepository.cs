@@ -6,6 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using QuentameBlazor.Server.Parameters;
+using System.Threading.Tasks;
 
 namespace QuentameBlazor.Server.Repository
 {
@@ -14,71 +15,73 @@ namespace QuentameBlazor.Server.Repository
         public EncabezadoRepository(AppDbContext dbContext) : base(dbContext)
         { }
 
-        public Encabezados GetUltEncabezado(int tipoencab)
+        public async Task<Encabezados> GetUltEncabezado(int tipoencab)
         {
-            return FindByCondition(e => e.IdDocumento.Equals(tipoencab))
+            return await FindByCondition(e => e.IdDocumento.Equals(tipoencab))
                 .OrderByDescending(e => e.NumDocumento)
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
         }
 
-        public Encabezados GetEncabezadosByIdEncab(int idencab)
+        public async Task<Encabezados> GetEncabezadosByIdEncab(int idencab)
         {
-            return FindByCondition(e => e.IdEncab.Equals(idencab))
+            return await FindByCondition(e => e.IdEncab.Equals(idencab))
                 .Include(e => e.Clientes)
                 .Include(e => e.Documentos)
                 .Include(e => e.Formaspago)
                 .Include(e => e.Usuarios)
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
         }
 
-        public PagedList<Encabezados> GetEncabezadosPaged(EncabezadosParameters encabezadoParameters)
+        public async Task<PagedList<Encabezados>> GetEncabezadosPaged(EncabezadosParameters encabezadoParameters)
         {
-            var ventas = FindByCondition(e => e.EsAnulado == 0)
+            var encab = await FindByCondition(e => e.EsAnulado == 0)
                 .Include(e => e.Clientes)
                 .Include(e => e.Documentos)
                 .Include(e => e.Formaspago)
                 .Include(e => e.Usuarios)
-                .OrderByDescending(e => e.Fecha);
+                .OrderByDescending(e => e.Fecha)
+                .ToListAsync();
 
-            return PagedList<Encabezados>.ToPagedList(ventas,
+            return PagedList<Encabezados>.ToPagedList(encab,
                 encabezadoParameters.PageNumber,
                 encabezadoParameters.PageSize);
         }
-        public PagedList<Encabezados> GetEncabezadosPagedFilter(EncabezadosParameters encabezadoParameters, Expression<Func<Encabezados, bool>> expression)
+        public async Task<PagedList<Encabezados>> GetEncabezadosPagedFilter(EncabezadosParameters encabezadoParameters, Expression<Func<Encabezados, bool>> expression)
         {
-            var ventas = FindByCondition(expression)
+            var encab = await FindByCondition(expression)
                 .Include(e => e.Clientes)
                 .Include(e => e.Documentos)
                 .Include(e => e.Formaspago)
                 .Include(e => e.Usuarios)
-                .OrderByDescending(e => e.Fecha);
+                .OrderByDescending(e => e.Fecha)
+                .ToListAsync();
 
-            return PagedList<Encabezados>.ToPagedList(ventas,
+            return PagedList<Encabezados>.ToPagedList(encab,
                 encabezadoParameters.PageNumber,
                 encabezadoParameters.PageSize);
         }
-        public IEnumerable<Encabezados> GetAllEncabByDate(DateTime fechainicio, DateTime fechafin, int tipoencab)
+        public async Task<IEnumerable<Encabezados>> GetAllEncabByDate(DateTime fechainicio, DateTime fechafin, int tipoencab)
         {
-            return FindByCondition(e => e.Fecha.Date >= fechainicio.Date && e.Fecha.Date <= fechafin.Date)
+            return await FindByCondition(e => e.Fecha.Date >= fechainicio.Date && e.Fecha.Date <= fechafin.Date)
                 .Include(e => e.Clientes)
                 .Include(e => e.Documentos)
                 .Include(e => e.Formaspago)
                 .Include(e => e.Usuarios)
                 .Where(e => e.IdDocumento.Equals(tipoencab))
                 .OrderByDescending(e => e.Fecha)
-                .ToList();
+                .ToListAsync();
         }
 
-        public IEnumerable<Encabezados> GetEncabByIdTercero(DateTime fechainicio, DateTime fechafin, int idtercero)
+        public async Task<IEnumerable<Encabezados>> GetEncabByIdTercero(DateTime fechainicio, DateTime fechafin, int idtercero)
         {
-            return FindByCondition(e => e.Fecha.Date >= fechainicio.Date && e.Fecha.Date <= fechafin.Date && e.IdCliente == idtercero)
+            return await FindByCondition(e => e.Fecha.Date >= fechainicio.Date && e.Fecha.Date <= fechafin.Date && e.IdCliente == idtercero)
                 .Include(e => e.Clientes)
                 .Include(e => e.Documentos)
                 .Include(e => e.Formaspago)
                 .Include(e => e.Usuarios)
                 .Where(e => e.IdFormaPago.Equals(2))
                 .OrderByDescending(e => e.Fecha)
-                .ToList();
+                .ToListAsync();
         }
 
 

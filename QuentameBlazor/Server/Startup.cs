@@ -6,6 +6,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Linq;
+using QuentameBlazor.Context;
+using Microsoft.EntityFrameworkCore;
+using QuentameBlazor.Server.Repository;
+using System.Text.Json.Serialization;
 
 namespace QuentameBlazor.Server
 {
@@ -22,8 +26,12 @@ namespace QuentameBlazor.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddControllersWithViews();
+            string dbConnectionString = this.Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseMySQL(dbConnectionString));
+            services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+            services.AddControllersWithViews().AddJsonOptions(x =>
+                    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
             services.AddRazorPages();
         }
 
