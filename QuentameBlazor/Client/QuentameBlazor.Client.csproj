@@ -10,4 +10,9 @@
     <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\QuentameBlazor.Models\QuentameBlazor.Models.csproj" />
+    <ProjectReference Include="..\..\QuentameBlazor.Context\QuentameBlazor.Context.csproj" />
+  </ItemGroup>
+
 </Project>

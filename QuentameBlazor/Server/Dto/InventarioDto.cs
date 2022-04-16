@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using QuentameBlazor.Models.Entities;
-using QuentameBlazor.Server.Repository;
+using QuentameBlazor.Repositories;
 
 namespace QuentameBlazor.Server.Dto
 {

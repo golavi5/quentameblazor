@@ -8,7 +8,7 @@ using Microsoft.Extensions.Hosting;
 using System.Linq;
 using QuentameBlazor.Context;
 using Microsoft.EntityFrameworkCore;
-using QuentameBlazor.Server.Repository;
+using QuentameBlazor.Repositories;
 using System.Text.Json.Serialization;
 
 namespace QuentameBlazor.Server
