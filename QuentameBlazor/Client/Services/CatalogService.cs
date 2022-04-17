@@ -18,7 +18,7 @@ namespace QuentameBlazor.Client.Services
         }
         public async Task<IEnumerable<ListaInvPreciosDto>> GetInvWithPrices()
         {
-            return await _httpClient.GetFromJsonAsync<IEnumerable<ListaInvPreciosDto>>($"api/catalogo");
+            return await _httpClient.GetFromJsonAsync<IEnumerable<ListaInvPreciosDto>>("api/catalogo");
         }
     }
 }

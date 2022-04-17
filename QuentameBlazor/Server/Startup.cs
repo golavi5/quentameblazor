@@ -36,6 +36,9 @@ namespace QuentameBlazor.Server
             //AutoMapper
             services.AddAutoMapper(typeof(Startup));
 
+            services.AddScoped<IInvPreciosRepository, InvPreciosRepository>();
+            
+
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
             services.AddControllersWithViews().AddJsonOptions(x =>
                     x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
