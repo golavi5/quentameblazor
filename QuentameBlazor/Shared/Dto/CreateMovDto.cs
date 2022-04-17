@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace QuentameBlazor.Server.Dto
+namespace QuentameBlazor.Dto
 {
     public partial class CreateMovDto
     {

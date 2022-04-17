@@ -1,6 +1,6 @@
 using AutoMapper;
 using QuentameBlazor.Models.Entities;
-using QuentameBlazor.Server.Dto;
+using QuentameBlazor.Dto;
 
 namespace QuentameBlazor.Server.Mapping
 {
@@ -8,7 +8,7 @@ namespace QuentameBlazor.Server.Mapping
     {
         public InventarioProfile()
         {
-            CreateMap<Inventarios, InventarioDto>();
+            CreateMap<InventariosPrecios, ListaInvPreciosDto>();
         }
     }
 }

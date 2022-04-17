@@ -1,10 +1,11 @@
 @page "/catalogo"
+@inject ICatalogService CatalogService
 
 <p>@Message</p>
 
-@if (inventarios != null)
+@if (invprecios != null)
 {
-
+    
 }
 else
 {
@@ -13,5 +14,17 @@ else
 
 @code {
     public string Message {get; set;}
-    public IEnumerable<Inventarios> inventarios;
+    public IEnumerable<ListaInvPreciosDto> invprecios;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            invprecios = await CatalogService.GetInvWithPrices();
+        }
+        catch (Exception ex)
+        {
+            Message= "Error ... " + ex.Message;
+        }
+    }
 }

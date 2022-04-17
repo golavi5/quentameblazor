@@ -14,6 +14,7 @@
     <ProjectReference Include="..\..\QuentameBlazor.Models\QuentameBlazor.Models.csproj" />
     <ProjectReference Include="..\..\QuentameBlazor.Context\QuentameBlazor.Context.csproj" />
     <ProjectReference Include="..\..\QuentameBlazor.Repositories\QuentameBlazor.Repositories.csproj" />
+    <ProjectReference Include="..\Shared\QuentameBlazor.Shared.csproj" />
   </ItemGroup>
 
 </Project>

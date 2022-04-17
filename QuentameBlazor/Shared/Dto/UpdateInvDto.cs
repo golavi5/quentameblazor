@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using QuentameBlazor.Models.Entities;
 using QuentameBlazor.Repositories;
 
-namespace QuentameBlazor.Server.Dto
+namespace QuentameBlazor.Dto
 {
     public partial class InventarioDto : NotifyBase
     {
