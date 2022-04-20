@@ -8,7 +8,7 @@ using QuentameBlazor.Models.Entities;
 using QuentameBlazor.Dto;
 using AutoMapper;
 
-namespace QuentameBlazor.Server
+namespace QuentameBlazor.Server.Controller
 {
     [Route("api/[controller]")]
     [ApiController]

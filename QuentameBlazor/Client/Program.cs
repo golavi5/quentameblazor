@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using QuentameBlazor.Client.Services;
+using MudBlazor.Services;
 
 namespace QuentameBlazor.Client
 {
@@ -21,6 +22,8 @@ namespace QuentameBlazor.Client
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             
             builder.Services.AddScoped<ICatalogService, CatalogService>();
+
+            builder.Services.AddMudServices();
             
             await builder.Build().RunAsync();
         }

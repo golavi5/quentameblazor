@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using QuentameBlazor.Models.Parameters;
+using System.Threading.Tasks;
 
 namespace QuentameBlazor.Repositories
 {
@@ -104,9 +105,9 @@ namespace QuentameBlazor.Repositories
                 .FirstOrDefault();
         }
 
-        public IEnumerable<Clientes> GetTercerosByCondition(Expression<Func<Clientes, bool>> expression)
+        public async Task<IEnumerable<Clientes>> GetTercerosByCondition(Expression<Func<Clientes, bool>> expression)
         {
-            return FindByCondition(expression)
+            return await FindByCondition(expression)
                 .Where(c => c.EsActivo.Equals(1))
                 .Include(c => c.ClientesAgrup1)
                 .Include(c => c.Ciudad)
@@ -115,7 +116,7 @@ namespace QuentameBlazor.Repositories
                 .Include(c => c.TipoRegimen)
                 .Include(c => c.TipoDoc)
                 .OrderBy(i => i.Nombre1)
-                .ToList();
+                .ToListAsync();
         }
 
         public void CreateTercero(Clientes tercero)

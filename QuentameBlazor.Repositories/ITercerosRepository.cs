@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using QuentameBlazor.Models.Parameters;
+using System.Threading.Tasks;
 
 namespace QuentameBlazor.Repositories
 {
@@ -17,7 +18,7 @@ namespace QuentameBlazor.Repositories
         PagedList<Clientes> GetTercerosPagedFilter(TerceroParameters terceroParameters, Expression<Func<Clientes, bool>> expression);
         Clientes GetTerceroById(int TerId);
         Clientes GetTerceroByDoc(string documento);
-        IEnumerable<Clientes> GetTercerosByCondition(Expression<Func<Clientes, bool>> expression);
+        Task<IEnumerable<Clientes>> GetTercerosByCondition(Expression<Func<Clientes, bool>> expression);
         void CreateTercero(Clientes tercero);
         void UpdateTercero(Clientes tercero);
         void DeleteTercero(Clientes tercero);
