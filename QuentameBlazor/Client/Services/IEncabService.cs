@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -5,8 +6,9 @@ using QuentameBlazor.Dto;
 
 namespace QuentameBlazor.Client.Services
 {
-    public interface IInvAgrupService
+    public interface IEncabService
     {
-        Task<IEnumerable<InvAgrupDto>> GetInvAgrups();
+        Task SaveEncab(EncabezadoDto encab);
+        Task<int> GetNextNumber();
     }
 }
