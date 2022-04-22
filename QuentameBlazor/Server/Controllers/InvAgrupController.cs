@@ -12,31 +12,30 @@ namespace QuentameBlazor.Server.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
-
-    public class ClientController : ControllerBase
+    class InvAgrupController : ControllerBase
     {
-        private readonly ITercerosRepository _clientRepository;
+        private readonly IInvAgrupRepository _invAgrupRepository;
         private readonly IMapper _mapper;
 
-        public ClientController(ITercerosRepository clientRepository, IMapper mapper)
+        public InvAgrupController(IInvAgrupRepository invAgrupRepository, IMapper mapper)
         {
-            _clientRepository = clientRepository;
+            _invAgrupRepository = invAgrupRepository;
             _mapper = mapper;
         }
-
+        
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ClientesDto>>> GetAllClients()
+        public async Task<ActionResult<IEnumerable<InvAgrupDto>>> GetAllInvAgrups()
         {
             try
             {
-                var clients = await _clientRepository.GetTercerosByCondition(c => c.EsActivo==1 && c.IdAgrup1 == 1);
-                return Ok(_mapper.Map<IEnumerable<ClientesDto>>(clients));
+                var invagrup = await _invAgrupRepository.GetAllInvAgrup();
+                return Ok(_mapper.Map<IEnumerable<InvAgrupDto>>(invagrup));
             }
             catch (Exception ex)
             {
                 return StatusCode(500,"Internar Server Error: " + ex.Message);
             }
-            
+          
         }
     }
 }

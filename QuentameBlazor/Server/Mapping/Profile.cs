@@ -4,11 +4,13 @@ using QuentameBlazor.Dto;
 
 namespace QuentameBlazor.Server.Mapping
 {
-    public class InventarioProfile : Profile
+    public class Profile : AutoMapper.Profile
     {
-        public InventarioProfile()
+        public Profile()
         {
             CreateMap<InventariosPrecios, ListaInvPreciosDto>();
+            CreateMap<InventariosAgrup1, InvAgrupDto>();
+            CreateMap<Clientes, ClientesDto>();
         }
     }
 }

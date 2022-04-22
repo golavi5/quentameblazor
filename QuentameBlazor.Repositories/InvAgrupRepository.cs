@@ -1,7 +1,12 @@
 ﻿using QuentameBlazor.Models.Entities;
 using QuentameBlazor.Context;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using QuentameBlazor.Models.Parameters;
 
 namespace QuentameBlazor.Repositories
 {
@@ -11,12 +16,12 @@ namespace QuentameBlazor.Repositories
         { 
         }
 
-        public IEnumerable<InventariosAgrup1> GetAllInvAgrup()
+        public async Task<IEnumerable<InventariosAgrup1>> GetAllInvAgrup()
         {
-            return FindAll()
+            return await FindAll()
                 .Where(i => i.EsActivo == 1)
                 .OrderBy(i => i.NomAgrup1)
-                .ToList();
+                .ToListAsync();
         }
 
         public void CreateAgrup1(InventariosAgrup1 invagrup1)
