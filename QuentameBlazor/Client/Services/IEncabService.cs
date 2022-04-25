@@ -9,6 +9,6 @@ namespace QuentameBlazor.Client.Services
     public interface IEncabService
     {
         Task SaveEncab(EncabezadoDto encab);
-        Task<int> GetNextNumber();
+        Task<int> GetLastEncab();
     }
 }

@@ -22,9 +22,9 @@ namespace QuentameBlazor.Client.Services
             await _httpClient.PostAsJsonAsync<EncabezadoDto>($"api/encab/", encab);
         }
 
-        public async Task<int> GetNextNumber()
+        public async Task<int> GetLastEncab()
         {
-            return await _httpClient.GetFromJsonAsync<int>($"api/encab/getnextnumber/");
+            return await _httpClient.GetFromJsonAsync<int>($"api/encab/getlastencab/");
         }
 
     }
