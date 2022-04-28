@@ -33,7 +33,7 @@ namespace QuentameBlazor.Server.Controller
             }
             catch (Exception ex)
             {
-                return StatusCode(500,"Internar Server Error: " + ex.Message);
+                return StatusCode(500,"Internal Server Error: " + ex.Message);
             }
           
         }
