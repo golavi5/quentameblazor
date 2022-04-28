@@ -1,0 +1,25 @@
+@page "/newencab"
+@inject IEncabService encabService
+@inject IProductService productService
+
+<p>@Message</p>
+
+@if (clients != null && products != null)
+{
+    
+} 
+else
+{
+    <p>Loading...</p>
+}
+
+
+@code {
+
+    public string Message { get; set; }
+    public IEnumerable<ClientesDto> clients;
+    public IEnumerable<SearchProductDto> products;
+        
+}
+
+
