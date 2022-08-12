@@ -1,12 +1,17 @@
 @page "/newencab"
 @inject IEncabService encabService
 @inject IProductService productService
+@inject IInvAgrupService invAgrupService
+@inject IClientService clientService
 
 <p>@Message</p>
 
 @if (clients != null && products != null)
 {
     
+    <div>
+        
+    </div>
 } 
 else
 {
@@ -15,11 +20,10 @@ else
 
 
 @code {
-
     public string Message { get; set; }
     public IEnumerable<ClientesDto> clients;
     public IEnumerable<SearchProductDto> products;
-        
+    public IEnumerable<InvAgrupDto> lineas;
 }
 
 

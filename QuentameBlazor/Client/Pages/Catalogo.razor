@@ -5,7 +5,49 @@
 
 @if (invprecios != null)
 {
-    
+    <div class="row">
+        <div class="col">
+            <MudTable Items="@invprecios" Hover="true" Breakpoint="Breakpoint.Sm">
+                <ToolBarContent>
+                    <MudText Typo="Typo.h6">PRODUCTOS</MudText>
+                </ToolBarContent>
+                <HeaderContent>
+                    <MudTh>NOMBRE</MudTh>
+                    <MudTh>COD. DE BARRAS</MudTh>
+                    <MudTh>PRECIO</MudTh>
+                    <MudTh>LINEA</MudTh>
+                    <MudTh>NOTAS</MudTh>
+                    <MudTh></MudTh>
+                    <MudTh></MudTh>
+                </HeaderContent>
+                <RowTemplate Context="CatalogContext">
+                    <MudTd DataLabel="Nombre">@CatalogContext.InventariosNomInventario</MudTd>
+                    <MudTd DataLabel="Cod. de Barras">@CatalogContext.InventariosCodigoBarras</MudTd>
+                    <MudTd DataLabel="Precio">@CatalogContext.Precio.ToString("C")</MudTd>
+                    <MudTd DataLabel="Linea">@CatalogContext.InventariosInventariosAgrup1NomAgrup1</MudTd>
+                    <MudTd DataLabel="Notas">@CatalogContext.InventariosObservacion</MudTd>
+                    @* <MudTd DataLabel="">
+                        <MudFab OnClick="@(() => Edit(CatalogContext.IdInventario))"
+                                Color="Color.Primary"
+                                Icon="@Icons.Material.Filled.Edit"
+                                Size="Size.Small"
+                                IconSize="Size.Small">
+                        </MudFab>
+                    </MudTd>
+                    <MudTd DataLabel="">
+                        <MudFab OnClick="@(() => Delete(ServContext.ServId))"
+                                Color="Color.Secondary"
+                                Icon="@Icons.Material.Filled.Delete"
+                                Size="Size.Small"
+                                IconSize="Size.Small">
+                        </MudFab>
+                    </MudTd> *@
+                </RowTemplate>
+
+            </MudTable>
+
+        </div>
+    </div>
 }
 else
 {

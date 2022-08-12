@@ -25,13 +25,14 @@ namespace QuentameBlazor.Repositories
         public async Task<IEnumerable<InventariosPrecios>> GetInvPreciosByConditionAsync(Expression<Func<InventariosPrecios, bool>> expression)
         {
             return await FindByCondition(expression)
-                .Where(i => i.IdLista.Equals(1))
+                .Take(50)
                 .Include(i => i.Inventarios)
                 .Include(i => i.Inventarios.InventariosAgrup1)
                 .Include(i => i.Inventarios.InventariosClasifimpto)
                 .Include(i => i.Inventarios.InventariosUnidades)
                 .Include(i => i.InventariosListas)
                 .Include(i => i.Inventarios.InventariosTipos)
+                .OrderBy(i => i.IdInvP)
                 .ToListAsync();
         }
 
