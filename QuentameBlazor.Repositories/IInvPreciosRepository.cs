@@ -1,4 +1,5 @@
 ﻿using QuentameBlazor.Models.Entities;
+using QuentameBlazor.Models.Parameters;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System;
@@ -10,6 +11,7 @@ namespace QuentameBlazor.Repositories
     {
         IEnumerable<InventariosPrecios> GetAllPrecios();
         Task<IEnumerable<InventariosPrecios>> GetInvPreciosByConditionAsync(Expression<Func<InventariosPrecios, bool>> expression);
+        Task<PagedList<InventariosPrecios>> GetPagedInvPrecios(ProductParameters productParameters);
         InventariosPrecios GetPrecioByCondition(Expression<Func<InventariosPrecios, bool>> expression);
         InventariosPrecios GetInvPrecioByIds(int idlista, int idinv);
         IEnumerable<InventariosPrecios> GetPreciosByIdInv(int idinv);

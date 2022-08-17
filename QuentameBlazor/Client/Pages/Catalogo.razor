@@ -3,7 +3,7 @@
 
 <p>@Message</p>
 
-@if (invprecios != null)
+@if (invprecios != null && invprecios.Any())
 {
     <div class="row">
         <div class="col">
@@ -48,6 +48,11 @@
 
         </div>
     </div>
+    <div class="row">
+        <div class="col">
+            <Pagination MetaData="MetaData" Spread="2" SelectedPage="SelectedPage" />
+        </div>
+    </div>
 }
 else
 {
@@ -56,17 +61,39 @@ else
 
 @code {
     public string Message { get; set; }
-    public IEnumerable<ListaInvPreciosDto> invprecios;
+    public IEnumerable<ListaInvPreciosDto> invprecios { get; set; } = new List<ListaInvPreciosDto>();
+    //public List<ListaInvPreciosDto> invpreciosList { get; set; } = new List<ListaInvPreciosDto>();
+    public MetaData MetaData { get; set; } = new MetaData();
+    private ProductParameters _productParameters = new ProductParameters();
 
     protected override async Task OnInitializedAsync()
     {
+        await GetInvPaged();
+        //await GetAll();
+    }
+    
+    protected async Task SelectedPage(int page)
+    {
+        _productParameters.PageNumber = page;
+        await GetInvPaged();
+    }
+
+    private async Task GetInvPaged()
+    {
         try
         {
-            invprecios = await CatalogService.GetInvWithPrices();
+            var paginResponse = await CatalogService.GetInvPaged(_productParameters);
+            invprecios = paginResponse.Items;
+            MetaData = paginResponse.MetaData;            
         }
         catch (Exception ex)
         {
             Message= "Error ... " + ex.Message;
         }
+    }
+
+    private async Task GetAll()
+    {
+        invprecios = await CatalogService.GetInvWithPrices();
     }
 }

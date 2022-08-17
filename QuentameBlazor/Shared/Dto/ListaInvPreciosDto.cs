@@ -7,9 +7,9 @@ namespace QuentameBlazor.Dto
 {
     public partial class ListaInvPreciosDto
     {
-        public int IdInvP { get; set; }
+        /* public int IdInvP { get; set; }
         public int IdLista { get; set; }
-        public int IdInventario { get; set; }
+        public int IdInventario { get; set; } */
         public decimal Precio { get; set; }
         public int Porcentaje { get; set; }
         public string InventariosCodInventario { get; set; }

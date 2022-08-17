@@ -1,12 +1,12 @@
 ﻿using QuentameBlazor.Models.Entities;
 using QuentameBlazor.Context;
+using QuentameBlazor.Models.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using QuentameBlazor.Models.Parameters;
 
 namespace QuentameBlazor.Repositories
 {
@@ -34,6 +34,21 @@ namespace QuentameBlazor.Repositories
                 .Include(i => i.Inventarios.InventariosTipos)
                 .OrderBy(i => i.IdInvP)
                 .ToListAsync();
+        }
+
+        public async Task<PagedList<InventariosPrecios>> GetPagedInvPrecios(ProductParameters productParameters)
+        {
+            var inv = await FindAll()
+                .Where(i => i.IdLista.Equals(1) && i.Inventarios.EsActivo.Equals(1))
+                .Include(i => i.Inventarios)
+                .Include(i => i.Inventarios.InventariosAgrup1)
+                .Include(i => i.Inventarios.InventariosClasifimpto)
+                .Include(i => i.Inventarios.InventariosUnidades)
+                .Include(i => i.InventariosListas)
+                .Include(i => i.Inventarios.InventariosTipos)
+                .ToListAsync();
+
+            return PagedList<InventariosPrecios>.ToPagedList(inv, productParameters.PageNumber, productParameters.PageSize);
         }
 
         //public IEnumerable<InventariosPrecios> GetPreciosByDistinctId(int id)
