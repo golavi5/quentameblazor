@@ -22,6 +22,8 @@ namespace QuentameBlazor.Client
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             
             builder.Services.AddScoped<ICatalogService, CatalogService>();
+            builder.Services.AddScoped<IInvPricesService, InvPricesService>();
+            builder.Services.AddScoped<IInvAgrupService, InvAgrupService>();
 
             builder.Services.AddMudServices();
             

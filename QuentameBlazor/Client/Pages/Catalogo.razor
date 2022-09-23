@@ -1,10 +1,72 @@
 @page "/catalogo"
 @inject ICatalogService CatalogService
+@inject IInvAgrupService InvAgrupService
+@inject IInvPricesService InvPricesService
+
 
 <p>@Message</p>
 
+@if (productCategories != null)
+{
+    <EditForm Model="@Product" OnValidSubmit="SearchProduct">
+        <div class="card">
+            <h6 class="card-header">Catalogo de Productos</h6>
+            <div class="card-body">
+                <div class="card-container">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="col">
+                                <MudSwitch @bind-Checked="@Sw_Agrup" Label="Buscar por Agrupacion" Color="Color.Info" />
+                            </div>
+                            <div class="col">
+                                <label for="">Agrupacion</label>
+                                <InputSelect class="form-control" @bind-Value="@Product.IdAgrup1">
+                                    @foreach (var item in productCategories)
+                                    {
+                                        <option value="@item.CodigoAgrup1">@item.NomAgrup1</option>
+                                    }
+                                </InputSelect>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="col">
+                                <MudSwitch @bind-Checked="@Sw_Cod" Label="Buscar por Codigo de Barras" Color="Color.Info" />
+                            </div>
+                            <div class="col">
+                                <label for="">Codigo de Barras</label>
+                                <input type="text" class="form-control" value="@Product.CodigoBarras" id="CodBarras"/>
+                            </div>    
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="col">
+                                <MudSwitch @bind-Checked="@Sw_Name" Label="Buscar por Nombre" Color="Color.Info" />
+                            </div>
+                            <div class="col">
+                                <label for="">Nombre</label>
+                                <input type="text" class="form-control" value="@Product.NomInventario" id="NomInv"/>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="col">
+
+                            </div>
+                            <div class="col align-self-end">
+                                <input type="submit" class="btn btn-success" value="Buscar" />
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </EditForm>
+}
+
+
 @if (invprecios != null && invprecios.Any())
 {
+    
     <div class="row">
         <div class="col">
             <MudTable Items="@invprecios" Hover="true" Breakpoint="Breakpoint.Sm">
@@ -54,22 +116,29 @@
         </div>
     </div>
 }
-else
-{
-    <p>Loading...</p>
-}
+
 
 @code {
     public string Message { get; set; }
-    public IEnumerable<ListaInvPreciosDto> invprecios { get; set; } = new List<ListaInvPreciosDto>();
-    //public List<ListaInvPreciosDto> invpreciosList { get; set; } = new List<ListaInvPreciosDto>();
+    public bool Sw_Agrup { get; set; }
+    public bool Sw_Cod { get; set; }
+    public bool Sw_Name { get; set; }
+    public Inventarios Product = new Inventarios();
+    public IEnumerable<InvAgrupDto> productCategories { get; set; }
+    public IEnumerable<ListaInvPreciosDto> invprecios { get; set; } 
     public MetaData MetaData { get; set; } = new MetaData();
     private ProductParameters _productParameters = new ProductParameters();
 
     protected override async Task OnInitializedAsync()
     {
-        await GetInvPaged();
-        //await GetAll();
+        try
+        {
+            productCategories = await InvAgrupService.GetInvAgrups();
+        }
+        catch (System.Exception ex)
+        {
+            Message = "Error... " + ex.Message;
+        }
     }
     
     protected async Task SelectedPage(int page)
@@ -82,7 +151,7 @@ else
     {
         try
         {
-            var paginResponse = await CatalogService.GetInvPaged(_productParameters);
+            var paginResponse = await InvPricesService.GetInvPaged(_productParameters);
             invprecios = paginResponse.Items;
             MetaData = paginResponse.MetaData;            
         }
@@ -92,8 +161,17 @@ else
         }
     }
 
-    private async Task GetAll()
+    private async Task SearchChanged(string searchTerm)
     {
-        invprecios = await CatalogService.GetInvWithPrices();
+        _productParameters.PageNumber = 1;
+        _productParameters.SearchTerm = searchTerm;
+        await GetInvPaged();
     }
+
+    private async Task SearchProduct()
+    {
+        _productParameters.SearchTerm = Product.NomInventario;
+        await GetInvPaged();
+    }
+
 }

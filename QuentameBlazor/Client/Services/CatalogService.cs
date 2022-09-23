@@ -23,43 +23,6 @@ namespace QuentameBlazor.Client.Services
             _httpClient = httpClient;
         }
 
-        public async Task<IEnumerable<ListaInvPreciosDto>> GetInvWithPrices()
-        {
-            var response = await _httpClient.GetAsync("api/catalogo");
-            var content = await response.Content.ReadAsStringAsync();
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new ApplicationException(content);
-            }
-
-            return JsonConvert.DeserializeObject<IEnumerable<ListaInvPreciosDto>>(content);
-
-            //return await _httpClient.GetFromJsonAsync<IEnumerable<ListaInvPreciosDto>>("api/catalogo");
-        }
-
-        public async Task<PagingResponse<ListaInvPreciosDto>> GetInvPaged(ProductParameters productParameters)
-        {
-            var queryStringParam = new Dictionary<string, string>
-            {
-                ["pageNumber"] = productParameters.PageNumber.ToString()
-            };
-
-            var response = await _httpClient.GetAsync(QueryHelpers.AddQueryString("api/catalogo/paged", queryStringParam));
-            
-            var content = await response.Content.ReadAsStringAsync();
-
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new ApplicationException(content);
-            }
-
-            var paginResponse = new PagingResponse<ListaInvPreciosDto>
-            {
-                Items = JsonConvert.DeserializeObject<List<ListaInvPreciosDto>>(content),
-                MetaData = JsonConvert.DeserializeObject<MetaData>(response.Headers.GetValues("X-Pagination").First())
-            };
-
-            return paginResponse;
-        }
+        
     }
 }

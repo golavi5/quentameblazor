@@ -19,6 +19,7 @@ namespace QuentameBlazor.Repositories
         Inventarios GetInventarioById(int id);
         IEnumerable<Inventarios> GetProductsByCondition(Expression<Func<Inventarios, bool>> expression);
         Task<IEnumerable<Inventarios>> GetProductsByConditionAsync(Expression<Func<Inventarios, bool>> expression);
+        Task<IEnumerable<Inventarios>> GetSearchedProductsAsync(ProductParameters productParameters);
         PagedList<Inventarios> GetInventariosPaged(InventarioParameters inventarioParameters);
         PagedList<Inventarios> GetInventariosPagedFilter(InventarioParameters inventarioParameters, Expression<Func<Inventarios, bool>> expression);
         void CreateIventario(Inventarios inventarios);

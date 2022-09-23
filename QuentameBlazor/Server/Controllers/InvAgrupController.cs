@@ -12,7 +12,8 @@ namespace QuentameBlazor.Server.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
-    class InvAgrupController : ControllerBase
+
+    public class InvAgrupController : ControllerBase
     {
         private readonly IInvAgrupRepository _invAgrupRepository;
         private readonly IMapper _mapper;
@@ -26,6 +27,9 @@ namespace QuentameBlazor.Server.Controller
         [HttpGet]
         public async Task<ActionResult<IEnumerable<InvAgrupDto>>> GetAllInvAgrups()
         {
+            /* var invagrup = await _invAgrupRepository.GetAllInvAgrup();
+            return Ok(invagrup); */
+            
             try
             {
                 var invagrup = await _invAgrupRepository.GetAllInvAgrup();

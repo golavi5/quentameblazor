@@ -16,19 +16,19 @@ namespace QuentameBlazor.Server.Controller
     [Route("api/[controller]")]
     [ApiController]
 
-    public class CatalogoController : ControllerBase
+    public class InvPricesController : ControllerBase
     {
         private readonly IInvPreciosRepository _invPrecioRepository;
         private readonly IMapper _mapper;
 
-        public CatalogoController(IInvPreciosRepository invPrecioRepository, IMapper mapper)
+        public InvPricesController(IInvPreciosRepository invPrecioRepository, IMapper mapper)
         {
             _invPrecioRepository = invPrecioRepository;
             _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<ListaInvPreciosDto>> GetProductsWithPrices()
+        public async Task<IEnumerable<ListaInvPreciosDto>> GetAll()
         {
             //create list for catalog with prices
             IEnumerable<ListaInvPreciosDto> ProductsList;
@@ -38,7 +38,7 @@ namespace QuentameBlazor.Server.Controller
         }
 
         [HttpGet("Paged")]
-        public async Task<ActionResult> GetAllPagedProducts([FromQuery] ProductParameters productParameters)
+        public async Task<ActionResult> GetAllPaged([FromQuery] ProductParameters productParameters)
         {
             try
             {

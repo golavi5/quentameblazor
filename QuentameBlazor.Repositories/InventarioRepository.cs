@@ -1,12 +1,13 @@
 ﻿using QuentameBlazor.Models.Entities;
 using QuentameBlazor.Context;
+using QuentameBlazor.Repositories.RepositoryExtensions;
+using QuentameBlazor.Models.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using QuentameBlazor.Models.Parameters;
 
 namespace QuentameBlazor.Repositories
 {
@@ -101,6 +102,14 @@ namespace QuentameBlazor.Repositories
                     .Include(i => i.InventariosTipos)
                     .Include(i => i.InventariosUnidades)
                     .OrderBy(t => t.NomInventario)
+                    .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Inventarios>> GetSearchedProductsAsync(ProductParameters productParameters)
+        {
+            return await FindAll()
+                    .Search(productParameters.SearchTerm)
+                    .OrderBy(i => i.NomInventario)
                     .ToListAsync();
         }
 

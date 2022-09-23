@@ -8,7 +8,7 @@ using QuentameBlazor.Models.Entities;
 using QuentameBlazor.Dto;
 using AutoMapper;
 
-namespace QuentameBlazor.Server.Controllers
+namespace QuentameBlazor.Server.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -29,7 +29,7 @@ namespace QuentameBlazor.Server.Controllers
             try
             {
                 var prods = await _invRepository.GetProductsByConditionAsync(i => i.EsActivo == 1);
-                return Ok(_mapper.Map<IEnumerable<SearchProductDto>>(prods));
+                return Ok(prods);
             }
             catch (Exception ex)
             {

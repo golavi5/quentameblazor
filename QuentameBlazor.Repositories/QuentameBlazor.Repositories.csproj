@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.19" />
   </ItemGroup>
 
   <PropertyGroup>

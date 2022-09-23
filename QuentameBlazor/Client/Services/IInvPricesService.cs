@@ -9,8 +9,9 @@ using QuentameBlazor.Models.Parameters;
 
 namespace QuentameBlazor.Client.Services
 {
-    public interface ICatalogService
+    public interface IInvPricesService
     {
-        
-    }    
+        Task<IEnumerable<ListaInvPreciosDto>> GetInvWithPrices();
+        Task<PagingResponse<ListaInvPreciosDto>> GetInvPaged(ProductParameters productParameters);
+    }
 }

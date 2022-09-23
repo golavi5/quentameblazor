@@ -10,8 +10,6 @@ using QuentameBlazor.Context;
 using Microsoft.EntityFrameworkCore;
 using QuentameBlazor.Repositories;
 using System.Text.Json.Serialization;
-using Newtonsoft.Json;
-using AutoMapper;
 
 namespace QuentameBlazor.Server
 {
@@ -38,9 +36,10 @@ namespace QuentameBlazor.Server
             services.AddAutoMapper(typeof(Startup));
             
             services.AddScoped<IInvPreciosRepository, InvPreciosRepository>();
-            
-
+            services.AddScoped<IInvAgrupRepository, InvAgrupRepository>();
+            services.AddScoped<IInventarioRepository, InventarioRepository>();
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+            
             services.AddControllersWithViews().AddJsonOptions(x =>
                     x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
             //services.AddControllers().AddNewtonsoftJson();

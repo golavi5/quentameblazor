@@ -10,6 +10,7 @@ namespace QuentameBlazor.Server.Mapping
         {
             CreateMap<InventariosPrecios, ListaInvPreciosDto>();
             CreateMap<InventariosAgrup1, InvAgrupDto>();
+            CreateMap<Inventarios, ListFilteredProductsDto>();
             CreateMap<Clientes, ClientesDto>();
             CreateMap<CreateEncabDto, Encabezados>();
             CreateMap<CreateMovDto, EncabezadosMov>();
